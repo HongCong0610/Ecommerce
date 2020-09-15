@@ -3,8 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+const productRoute = require('./routes/product.js');
 
 const port = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(
     process.env.MONGO_URL,
@@ -16,8 +22,10 @@ mongoose.connect(
     .then(() => console.log("Database Connected Successfully"))
     .catch(err => console.log(err));
 
+app.use('/products', productRoute);
+
 app.get('/', (req, res) => {
-    res.send('Ecommerce server!');
+    res.send('Home page');
 })
 
 app.listen(port, () => {
