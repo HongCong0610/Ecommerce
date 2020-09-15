@@ -4,7 +4,8 @@
   "description": "ecommerce-server",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Le Hong Cong",
   "license": "ISC",
